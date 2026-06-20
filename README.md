@@ -102,6 +102,86 @@ This project was fun to build and helped me learn a lot of new things.
 
 ## 📌 Project Notes
 
+## 📸 Screenshots
+
+<details open>
+<summary><strong>Visuals</strong></summary>
+
+<br>
+
+<p align="center">
+  <img src="images/Visuals.png" width="900">
+</p>
+
+</details>
+
+<details>
+<summary><strong>ESP (Front View)</strong></summary>
+
+<br>
+
+<p align="center">
+  <img src="images/ESP_Screenshot_Front.png" width="900">
+</p>
+
+</details>
+
+<details>
+<summary><strong>ESP (Back View)</strong></summary>
+
+<br>
+
+<p align="center">
+  <img src="images/ESP_Screenshot_back.png" width="900">
+</p>
+
+</details>
+
+<details>
+<summary><strong>Skin Changer</strong></summary>
+
+<br>
+
+<p align="center">
+  <img src="images/Skins.png" width="900">
+</p>
+
+</details>
+
+<details>
+<summary><strong>Misc Features</strong></summary>
+
+<br>
+
+<p align="center">
+  <img src="images/Misc.png" width="900">
+</p>
+
+</details>
+
+<details>
+<summary><strong>Settings</strong></summary>
+
+<br>
+
+<p align="center">
+  <img src="images/Settings.png" width="900">
+</p>
+
+</details>
+
+<details>
+<summary><strong>Debug</strong></summary>
+
+<br>
+
+<p align="center">
+  <img src="images/Debug.png" width="900">
+</p>
+
+</details>
+
+
 > [!IMPORTANT]
 > The Aimbot tab was intentionally removed and is no longer included.
 
