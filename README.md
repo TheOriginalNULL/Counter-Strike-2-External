@@ -12,7 +12,7 @@ This project was fun to build and helped me learn a lot of new things.
 ![IDA Pro](https://img.shields.io/badge/IDA_Pro-000000)
 ![ReClass.NET](https://img.shields.io/badge/ReClass.NET-5C2D91)
 ![Cheat_Engine](https://img.shields.io/badge/Cheat_Engine-8B0000)
-
+![Claude](https://img.shields.io/badge/Claude_AI-D97757?logo=anthropic&logoColor=white)
 
 ## ✨ Features
 
