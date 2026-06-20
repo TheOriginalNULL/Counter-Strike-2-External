@@ -100,7 +100,6 @@ This project was fun to build and helped me learn a lot of new things.
 * Displays C4 (Planted or Dropped)
 * Displays Grenades
 
-## 📌 Project Notes
 
 ## 📸 Screenshots
 
@@ -181,6 +180,9 @@ This project was fun to build and helped me learn a lot of new things.
 
 </details>
 
+
+
+## 📌 Project Notes
 
 > [!IMPORTANT]
 > The Aimbot tab was intentionally removed and is no longer included.
