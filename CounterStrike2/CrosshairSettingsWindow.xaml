@@ -1,0 +1,103 @@
+<Window x:Class="CounterStrike2.CrosshairSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Crosshair"
+        Width="300" SizeToContent="Height"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Topmost="True">
+
+    <Border Background="{StaticResource Bg}" CornerRadius="14"
+            BorderBrush="{StaticResource Border}" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="30" ShadowDepth="0" Opacity="0.55" Color="Black" />
+        </Border.Effect>
+
+        <StackPanel Margin="22,18,22,20">
+
+            <!-- Header / drag handle -->
+            <Grid MouseLeftButtonDown="OnDrag" Cursor="SizeAll" Margin="0,0,0,14">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Crosshair" Foreground="{StaticResource Text}" FontSize="18" FontWeight="Bold" />
+                    <TextBlock Text="Overlay-only — does not touch the game's own crosshair"
+                               Foreground="{StaticResource Muted}" FontSize="10" Margin="0,2,0,0" />
+                </StackPanel>
+                <Button Grid.Column="1" Content="&#xE711;" Click="Close_Click"
+                        Style="{StaticResource WindowButton}" VerticalAlignment="Top" />
+            </Grid>
+
+            <!-- Live preview -->
+            <Border Height="100" Background="{StaticResource Panel}" CornerRadius="8"
+                    BorderBrush="{StaticResource Border}" BorderThickness="1" Margin="0,0,0,16">
+                <Canvas x:Name="PreviewCanvas" Width="40" Height="40" />
+            </Border>
+
+            <!-- Color -->
+            <TextBlock Text="Color" Foreground="{StaticResource Text}" FontSize="13" Margin="0,0,0,6" />
+            <UniformGrid x:Name="SwatchGrid" Columns="8" Margin="0,0,0,10" />
+
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="70" />
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="HexBox" Grid.Column="0"
+                         Background="{StaticResource Panel}" Foreground="{StaticResource Text}"
+                         BorderBrush="{StaticResource Border}" BorderThickness="1"
+                         Padding="8,6" FontSize="12" FontFamily="Consolas" MaxLength="7"
+                         KeyDown="HexBox_KeyDown">
+                    <TextBox.Resources>
+                        <Style TargetType="Border"><Setter Property="CornerRadius" Value="6"/></Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Button Grid.Column="1" Content="Apply" Click="ApplyHex_Click" Cursor="Hand"
+                        Foreground="White" FontSize="12" FontWeight="SemiBold"
+                        Margin="8,0,0,0" Padding="0,7" BorderThickness="0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="Bg" Background="{StaticResource AccentGradient}" CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Bg" Property="Background" Value="#8A3FE6"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+
+            <!-- Size -->
+            <Grid Margin="0,0,0,2">
+                <TextBlock Grid.Column="0" Text="Size" Foreground="{StaticResource Text}" FontSize="13" HorizontalAlignment="Left" />
+                <TextBlock x:Name="SizeLabel" Foreground="{StaticResource Accent}" FontSize="13" HorizontalAlignment="Right" />
+            </Grid>
+            <Slider x:Name="SizeSlider" Style="{StaticResource ModernSlider}" Minimum="2" Maximum="16"
+                    ValueChanged="SizeSlider_ValueChanged" Margin="0,0,0,10" />
+
+            <!-- Thickness -->
+            <Grid Margin="0,0,0,2">
+                <TextBlock Grid.Column="0" Text="Thickness" Foreground="{StaticResource Text}" FontSize="13" HorizontalAlignment="Left" />
+                <TextBlock x:Name="ThicknessLabel" Foreground="{StaticResource Accent}" FontSize="13" HorizontalAlignment="Right" />
+            </Grid>
+            <Slider x:Name="ThicknessSlider" Style="{StaticResource ModernSlider}" Minimum="1" Maximum="4"
+                    ValueChanged="ThicknessSlider_ValueChanged" Margin="0,0,0,10" />
+
+            <!-- Gap -->
+            <Grid Margin="0,0,0,2">
+                <TextBlock Grid.Column="0" Text="Gap" Foreground="{StaticResource Text}" FontSize="13" HorizontalAlignment="Left" />
+                <TextBlock x:Name="GapLabel" Foreground="{StaticResource Accent}" FontSize="13" HorizontalAlignment="Right" />
+            </Grid>
+            <Slider x:Name="GapSlider" Style="{StaticResource ModernSlider}" Minimum="0" Maximum="12"
+                    ValueChanged="GapSlider_ValueChanged" Margin="0,0,0,4" />
+
+            <CheckBox x:Name="DotCheck" Style="{StaticResource ToggleSwitch}" Content="Center dot"
+                      Checked="DotCheck_Changed" Unchecked="DotCheck_Changed" />
+
+        </StackPanel>
+    </Border>
+</Window>

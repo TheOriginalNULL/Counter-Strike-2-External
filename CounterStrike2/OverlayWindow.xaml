@@ -1,0 +1,54 @@
+<Window x:Class="CounterStrike2.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:r="clr-namespace:CounterStrike2.Rendering"
+        Title="Overlay"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ShowInTaskbar="False" Topmost="True" ResizeMode="NoResize"
+        Focusable="False" IsHitTestVisible="False">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+
+    <Grid>
+        <!-- ESP boxes drawn here (below HUD elements) -->
+        <r:EspLayer x:Name="EspLayer" />
+
+        <!-- Static HUD canvas (above ESP) -->
+        <Canvas x:Name="Root">
+
+            <!-- Watermark (top-left) -->
+            <Border Canvas.Left="14" Canvas.Top="12"
+                    Background="#CC0A0810" CornerRadius="6" Padding="10,5"
+                    Visibility="{Binding Watermark, Converter={StaticResource BoolToVis}}">
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Width="8" Height="8" Fill="#A35BFF" VerticalAlignment="Center" />
+                    <TextBlock Text="~NULL Client" Foreground="White" FontWeight="Bold"
+                               FontSize="12" Margin="8,0,0,0" />
+                </StackPanel>
+            </Border>
+
+            <!-- FPS counter (top-right, positioned in code) -->
+            <Border x:Name="FpsBox"
+                    Background="#CC0A0810" CornerRadius="6" Padding="9,5"
+                    Visibility="{Binding ShowFps, Converter={StaticResource BoolToVis}}">
+                <TextBlock x:Name="FpsText" Text="0 fps" Foreground="#A35BFF"
+                           FontWeight="SemiBold" FontSize="12" />
+            </Border>
+
+            <!-- Crosshair — shape rebuilt in code from Config.Current's Crosshair* properties -->
+            <Canvas x:Name="Crosshair"
+                    Visibility="{Binding CrosshairOverlay, Converter={StaticResource BoolToVis}}" />
+
+            <!-- Hit marker — same center as the crosshair, flashed briefly on a confirmed hit -->
+            <Canvas x:Name="HitMarker" Visibility="Collapsed">
+                <Line X1="-11" Y1="-11" X2="-4" Y2="-4" Stroke="#FF8C1A" StrokeThickness="2.5" />
+                <Line X1="11"  Y1="-11" X2="4"  Y2="-4" Stroke="#FF8C1A" StrokeThickness="2.5" />
+                <Line X1="-11" Y1="11"  X2="-4" Y2="4"  Stroke="#FF8C1A" StrokeThickness="2.5" />
+                <Line X1="11"  Y1="11"  X2="4"  Y2="4"  Stroke="#FF8C1A" StrokeThickness="2.5" />
+            </Canvas>
+
+        </Canvas>
+    </Grid>
+</Window>

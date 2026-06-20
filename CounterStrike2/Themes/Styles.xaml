@@ -1,0 +1,430 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ============ Palette (black + purple) ============ -->
+    <Color x:Key="BgColor">#08070C</Color>
+    <Color x:Key="PanelColor">#110F18</Color>
+    <Color x:Key="SidebarColor">#0B0A11</Color>
+    <Color x:Key="CardColor">#16131F</Color>
+    <Color x:Key="BorderColor">#271F38</Color>
+    <Color x:Key="AccentColor">#A35BFF</Color>
+    <Color x:Key="AccentDimColor">#3A2B5C</Color>
+    <Color x:Key="TextColor">#ECE9F5</Color>
+    <Color x:Key="MutedColor">#8A83A3</Color>
+
+    <SolidColorBrush x:Key="Bg"        Color="{StaticResource BgColor}" />
+    <SolidColorBrush x:Key="Panel"     Color="{StaticResource PanelColor}" />
+    <SolidColorBrush x:Key="Sidebar"   Color="{StaticResource SidebarColor}" />
+    <SolidColorBrush x:Key="Card"      Color="{StaticResource CardColor}" />
+    <SolidColorBrush x:Key="Border"    Color="{StaticResource BorderColor}" />
+    <SolidColorBrush x:Key="Accent"    Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="AccentDim" Color="{StaticResource AccentDimColor}" />
+    <SolidColorBrush x:Key="Text"      Color="{StaticResource TextColor}" />
+    <SolidColorBrush x:Key="Muted"     Color="{StaticResource MutedColor}" />
+
+    <!-- Purple gradient for brand / accent surfaces -->
+    <LinearGradientBrush x:Key="AccentGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#B36BFF" Offset="0" />
+        <GradientStop Color="#7A3FE0" Offset="1" />
+    </LinearGradientBrush>
+
+    <!-- ============ Toggle Switch (styled CheckBox) ============ -->
+    <Style x:Key="ToggleSwitch" TargetType="CheckBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="{TemplateBinding Content}"
+                                   Foreground="{StaticResource Text}"
+                                   FontSize="13"
+                                   VerticalAlignment="Center" />
+
+                        <Border Grid.Column="1"
+                                x:Name="Track"
+                                Width="42" Height="22"
+                                CornerRadius="11"
+                                Background="#221C30">
+                            <Ellipse x:Name="Thumb"
+                                     Width="16" Height="16"
+                                     Fill="White"
+                                     HorizontalAlignment="Left"
+                                     Margin="3,0,0,0">
+                                <Ellipse.RenderTransform>
+                                    <TranslateTransform x:Name="ThumbShift" X="0" />
+                                </Ellipse.RenderTransform>
+                            </Ellipse>
+                        </Border>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Track" Property="Background" Value="{StaticResource Accent}" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ThumbShift"
+                                                         Storyboard.TargetProperty="X"
+                                                         To="20" Duration="0:0:0.15">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ThumbShift"
+                                                         Storyboard.TargetProperty="X"
+                                                         To="0" Duration="0:0:0.15">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="0,7" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <!-- ============ Toggle Switch — track only (no label) ============ -->
+    <Style x:Key="ToggleSwitchOnly" TargetType="CheckBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Border x:Name="Track" Width="42" Height="22" CornerRadius="11" Background="#221C30">
+                        <Ellipse x:Name="Thumb" Width="16" Height="16" Fill="White"
+                                 HorizontalAlignment="Left" Margin="3,0,0,0">
+                            <Ellipse.RenderTransform>
+                                <TranslateTransform x:Name="ThumbShift" X="0" />
+                            </Ellipse.RenderTransform>
+                        </Ellipse>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Track" Property="Background" Value="{StaticResource Accent}" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ThumbShift"
+                                                         Storyboard.TargetProperty="X"
+                                                         To="20" Duration="0:0:0.15">
+                                            <DoubleAnimation.EasingFunction><CubicEase EasingMode="EaseOut" /></DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ThumbShift"
+                                                         Storyboard.TargetProperty="X"
+                                                         To="0" Duration="0:0:0.15">
+                                            <DoubleAnimation.EasingFunction><CubicEase EasingMode="EaseOut" /></DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <!-- ============ Sidebar tab (TabItem) ============ -->
+    <Style x:Key="SidebarTab" TargetType="TabItem">
+        <Setter Property="Foreground" Value="{StaticResource Muted}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Border x:Name="Root"
+                            Background="Transparent"
+                            CornerRadius="8"
+                            Margin="10,3" Padding="12,10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="Bar"
+                                    Width="3" Height="16"
+                                    CornerRadius="2"
+                                    Background="{StaticResource Accent}"
+                                    HorizontalAlignment="Left"
+                                    Margin="-6,0,10,0"
+                                    Opacity="0" />
+                            <ContentPresenter Grid.Column="1"
+                                              ContentSource="Header"
+                                              VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Root" Property="Background" Value="#17131F" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Root" Property="Background" Value="{StaticResource Card}" />
+                            <Setter TargetName="Bar" Property="Opacity" Value="1" />
+                            <Setter Property="Foreground" Value="{StaticResource Text}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ============ Card container ============ -->
+    <Style x:Key="CardPanel" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource Card}" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="18,14" />
+        <Setter Property="Margin" Value="0,0,0,14" />
+        <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
+    <!-- ============ Section title ============ -->
+    <Style x:Key="SectionTitle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource Text}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Margin" Value="0,0,0,10" />
+    </Style>
+
+    <!-- ============ Slider ============ -->
+    <Style x:Key="ModernSlider" TargetType="Slider">
+        <Setter Property="Height" Value="22" />
+        <Setter Property="Margin" Value="0,4" />
+        <Setter Property="Foreground" Value="{StaticResource Accent}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Slider">
+                    <Grid VerticalAlignment="Center">
+                        <Border Height="4" CornerRadius="2" Background="#221C30" />
+                        <Track x:Name="PART_Track">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Command="Slider.DecreaseLarge">
+                                    <RepeatButton.Template>
+                                        <ControlTemplate TargetType="RepeatButton">
+                                            <Border Height="4" CornerRadius="2" Background="{StaticResource Accent}" />
+                                        </ControlTemplate>
+                                    </RepeatButton.Template>
+                                </RepeatButton>
+                            </Track.DecreaseRepeatButton>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Command="Slider.IncreaseLarge">
+                                    <RepeatButton.Template>
+                                        <ControlTemplate TargetType="RepeatButton">
+                                            <Border Background="Transparent" />
+                                        </ControlTemplate>
+                                    </RepeatButton.Template>
+                                </RepeatButton>
+                            </Track.IncreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb>
+                                    <Thumb.Template>
+                                        <ControlTemplate TargetType="Thumb">
+                                            <Ellipse Width="14" Height="14" Fill="White" />
+                                        </ControlTemplate>
+                                    </Thumb.Template>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ============ Sidebar nav button (RadioButton) ============ -->
+    <Style x:Key="NavBtn" TargetType="RadioButton">
+        <Setter Property="Foreground" Value="{StaticResource Muted}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border x:Name="Root" Background="Transparent" CornerRadius="8" Margin="10,3" Padding="12,10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="Bar" Width="3" Height="16" CornerRadius="2"
+                                    Background="{StaticResource Accent}"
+                                    HorizontalAlignment="Left" Margin="-6,0,10,0"
+                                    Opacity="0" />
+                            <ContentPresenter Grid.Column="1" VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Root" Property="Background" Value="#17131F" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Root" Property="Background" Value="{StaticResource Card}" />
+                            <Setter TargetName="Bar"  Property="Opacity" Value="1" />
+                            <Setter Property="Foreground" Value="{StaticResource Text}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ============ Dark ComboBox ============ -->
+    <Style x:Key="DarkComboBox" TargetType="ComboBox">
+        <Setter Property="Foreground"          Value="{StaticResource Text}"/>
+        <Setter Property="Background"          Value="{StaticResource Card}"/>
+        <Setter Property="BorderBrush"         Value="{StaticResource Border}"/>
+        <Setter Property="BorderThickness"     Value="1"/>
+        <Setter Property="Height"              Value="26"/>
+        <Setter Property="FontSize"            Value="12"/>
+        <Setter Property="Cursor"              Value="Hand"/>
+        <Setter Property="FocusVisualStyle"    Value="{x:Null}"/>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Foreground"       Value="{StaticResource Text}"/>
+                    <Setter Property="Background"       Value="Transparent"/>
+                    <Setter Property="Padding"          Value="8,5"/>
+                    <Setter Property="FontSize"         Value="12"/>
+                    <Setter Property="Cursor"           Value="Hand"/>
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBoxItem">
+                                <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                        Padding="{TemplateBinding Padding}">
+                                    <ContentPresenter/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Bd" Property="Background" Value="#3A2B5C"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Bd" Property="Background" Value="#3A2B5C"/>
+                                        <Setter Property="Foreground" Value="{StaticResource Accent}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <!-- Full-area toggle button (dark border + chevron) -->
+                        <ToggleButton x:Name="ToggleButton" Focusable="False" ClickMode="Press"
+                                      IsChecked="{Binding IsDropDownOpen, Mode=TwoWay,
+                                                  RelativeSource={RelativeSource TemplatedParent}}">
+                            <ToggleButton.Template>
+                                <ControlTemplate TargetType="ToggleButton">
+                                    <Border x:Name="Bd"
+                                            Background="{StaticResource Card}"
+                                            BorderBrush="{StaticResource Border}"
+                                            BorderThickness="1"
+                                            CornerRadius="5">
+                                        <Path x:Name="Arrow"
+                                              Data="M 0 0 L 4 4 L 8 0"
+                                              Stroke="{StaticResource Muted}"
+                                              StrokeThickness="1.5"
+                                              HorizontalAlignment="Right"
+                                              VerticalAlignment="Center"
+                                              Margin="0,0,8,0"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd"    Property="BorderBrush" Value="{StaticResource Accent}"/>
+                                            <Setter TargetName="Arrow" Property="Stroke"      Value="{StaticResource Accent}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter TargetName="Bd"    Property="BorderBrush" Value="{StaticResource Accent}"/>
+                                            <Setter TargetName="Arrow" Property="Stroke"      Value="{StaticResource Accent}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
+
+                        <!-- Selected-item label (overlaid, non-hittable) -->
+                        <ContentPresenter IsHitTestVisible="False"
+                                          Content="{TemplateBinding SelectionBoxItem}"
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          Margin="8,0,24,0"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Left"
+                                          TextBlock.Foreground="{StaticResource Text}"/>
+
+                        <!-- Dropdown popup -->
+                        <Popup x:Name="PART_Popup"
+                               Placement="Bottom"
+                               IsOpen="{TemplateBinding IsDropDownOpen}"
+                               AllowsTransparency="True"
+                               Focusable="False"
+                               PopupAnimation="Fade">
+                            <Border MinWidth="{TemplateBinding ActualWidth}"
+                                    Background="#16131F"
+                                    BorderBrush="#3A2B5C"
+                                    BorderThickness="1"
+                                    CornerRadius="5"
+                                    Margin="0,2,0,0">
+                                <ScrollViewer MaxHeight="160" VerticalScrollBarVisibility="Auto">
+                                    <StackPanel IsItemsHost="True"
+                                                KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ============ Window control buttons (min / close) ============ -->
+    <Style x:Key="WindowButton" TargetType="Button">
+        <Setter Property="Width" Value="38" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Foreground" Value="{StaticResource Muted}" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="B" Background="Transparent">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#1E1730" />
+                            <Setter Property="Foreground" Value="{StaticResource Text}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
