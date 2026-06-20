@@ -5,6 +5,15 @@ This project was fun to build and helped me learn a lot of new things.
 > [!WARNING]
 > This project is **not intended for use in actual matches**, and I am **not responsible for any damage, penalties, or bans applied to your account**. 🫵
 
+## 🛠️ Tools Used
+
+![C#](https://img.shields.io/badge/C%23-512BD4?logo=csharp&logoColor=white)
+![WPF](https://img.shields.io/badge/WPF-512BD4)
+![IDA Pro](https://img.shields.io/badge/IDA_Pro-000000)
+![ReClass.NET](https://img.shields.io/badge/ReClass.NET-5C2D91)
+![Cheat_Engine](https://img.shields.io/badge/Cheat_Engine-8B0000)
+
+
 ## ✨ Features
 
 ### 👁️ Visuals
