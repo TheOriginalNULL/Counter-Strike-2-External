@@ -13,7 +13,7 @@ This project was fun to build and helped me learn a lot of new things.
 ![ReClass.NET](https://img.shields.io/badge/ReClass.NET-5C2D91)
 ![Cheat_Engine](https://img.shields.io/badge/Cheat_Engine-8B0000)
 ![Claude](https://img.shields.io/badge/Claude_AI-D97757?logo=anthropic&logoColor=white)
-![A2x Dumper](https://img.shields.io/badge/A2x_Dumper-6f42c1?style=for-the-badge&logo=github&logoColor=white)
+![A2x Dumper](https://img.shields.io/badge/A2x_Dumper-6f42c1?style=for-the-badge)
 
 ## ✨ Features
 
