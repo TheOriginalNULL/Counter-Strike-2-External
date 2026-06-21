@@ -14,6 +14,8 @@ This project was fun to build and helped me learn a lot of new things.
 ![Cheat_Engine](https://img.shields.io/badge/Cheat_Engine-8B0000)
 ![Claude](https://img.shields.io/badge/Claude_AI-D97757?logo=anthropic&logoColor=white)
 
+A2x dumper
+
 ## ✨ Features
 
 ### 👁️ Visuals
